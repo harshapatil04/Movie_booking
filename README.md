@@ -28,21 +28,27 @@ NFR4: MySQL must be used as the database engine.
 Entities:- USERS(user_id, name, email, password)- MOVIES(movie_id, title, genre, duration)- SHOWS(show_id, movie_id, show_date, show_time, price)- SEATS(seat_id, seat_number)- BOOKINGS(booking_id, user_id, show_id, seat_id, booking_time)
 Relationships:- A USER may have multiple BOOKINGS.- A MOVIE may have multiple SHOWS.- A SHOW may have multiple BOOKINGS.- A SEAT can be booked many times, but only once per show.- BOOKINGS link USERS → SHOWS → SEATS.
 6. Database Schema (MySQL)
-users:
+
+**users:
+
 CREATE TABLE users (
 user_id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(100),
 email VARCHAR(100) UNIQUE,
 password VARCHAR(100)
 );
-movies:
+
+**movies:
+
 CREATE TABLE movies (
 movie_id INT PRIMARY KEY AUTO_INCREMENT,
 title VARCHAR(150),
 genre VARCHAR(50),
 duration INT
 );
-shows:
+
+**shows:
+
 CREATE TABLE shows (
 show_id INT PRIMARY KEY AUTO_INCREMENT,
 movie_id INT,
@@ -51,12 +57,16 @@ show_time TIME,
 price DECIMAL(6,2),
 FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
 );
-seats:
+
+**seats:
+
 CREATE TABLE seats (
 seat_id INT PRIMARY KEY AUTO_INCREMENT,
 seat_number VARCHAR(10)
 );
-bookings:
+
+**bookings:
+
 CREATE TABLE bookings (
 booking_id INT PRIMARY KEY AUTO_INCREMENT,
 user_id INT,
